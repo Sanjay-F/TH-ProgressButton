@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="BLU">#00ACEE</color>
+    <color name="main_blue">#19ccf9</color>
+    <color name="circle_gray">#b2b2b3</color>
+    <color name="circle_fill_gray">#5e5e5e</color>
+</resources>
