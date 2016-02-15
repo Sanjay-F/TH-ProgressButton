@@ -43,12 +43,13 @@ public class CusImage extends View {
 	private void init() {
 
 		myPaint = new Paint();
-		DisplayMetrics metrics = getContext().getResources()
-				.getDisplayMetrics();
-		int width = metrics.widthPixels;
-		int height = metrics.heightPixels;
-		float scarea = width * height;
-		pix = (int) Math.sqrt(scarea * 0.0217);
+		//原本设置rect是用下面的方法，不过没懂这个0.0217是什么意思，改成在onDraw里面的
+		// DisplayMetrics metrics = getContext().getResources()
+		// 		.getDisplayMetrics();
+		// int width = metrics.widthPixels;
+		// int height = metrics.heightPixels;
+		// float scarea = width * height;
+		// pix = (int) Math.sqrt(scarea * 0.0217);
 
 		myPaint.setAntiAlias(true);
 		myPaint.setStyle(Paint.Style.STROKE);
@@ -59,11 +60,12 @@ public class CusImage extends View {
 		myFramePaint.setAntiAlias(true);
 		myFramePaint.setColor(Color.TRANSPARENT);
 
-		float startx = (float) (pix * 0.05);
-		float endx = (float) (pix * 0.95);
-		float starty = (float) (pix * 0.05);
-		float endy = (float) (pix * 0.95);
-		rect = new RectF(startx, starty, endx, endy);
+		// float startx = (float) (pix * 0.05);
+		// float endx = (float) (pix * 0.95);
+		// float starty = (float) (pix * 0.05);
+		// float endy = (float) (pix * 0.95);
+		// rect = new RectF(startx, starty, endx, endy);
+		rect = new RectF();
 	}
 
 	public void setupprogress(int progress) {
@@ -127,6 +129,10 @@ public class CusImage extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 
+		int center = getWidth() / 2;
+        	int radius = (int) (center - myPaint.getStrokeWidth());
+        	rect.set(center - radius, center - radius, center + radius, center + radius);
+                
 		canvas.drawArc(rect, startAngle, sweepAngle, false, myPaint);
 		startAngle = -90;
 
